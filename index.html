@@ -3,38 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stranger Things - Docker Deploy</title>
+    <title>Stranger Things</title>
     <style>
         body {
-            background-color: #000;
-            color: #e31212;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            padding-top: 100px;
+            background-color: black;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
         }
+
         h1 {
             font-size: 5rem;
+            color: #db202c; /* Stranger Things Red */
             text-transform: uppercase;
-            text-shadow: 0 0 10px #e31212, 0 0 20px #e31212;
-            margin-bottom: 20px;
+            letter-spacing: 10px;
+            text-shadow: 0 0 20px #db202c, 0 0 40px #db202c;
+            margin: 0;
+            animation: flicker 2s infinite alternate;
         }
+
         p {
             font-size: 1.5rem;
-            color: #fff;
+            color: #cccccc;
+            margin-top: 20px;
+            letter-spacing: 2px;
         }
-        .status-box {
-            border: 2px solid #e31212;
-            display: inline-block;
-            padding: 20px;
-            margin-top: 30px;
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0.4;
+            }
+        }
+
+        .container {
+            border: 2px solid #db202c;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #db202c;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>STRANGER THINGS</h1>
-    <p>CI/CD Pipeline with Jenkins & SonarQube</p>
-    <div class="status-box">
-        <p>Current Status: <strong>ANALYSIS SUCCESSFUL</strong></p>
+    <div class="container">
+        <h1>STRANGER THINGS</h1>
+        <p>CI/CD Pipeline: Jenkins & SonarQube</p>
+        <p style="color: #db202c; font-weight: bold;">BUILD SUCCESSFUL</p>
     </div>
 </body>
 </html>
