@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage('SonarQube Analysis') {
             steps {
-                // Yahan "Sonar-Server" wahi naam hai jo aapne Jenkins settings mein rakha hai
+                // 'Sonar-Server' wahi naam hai jo aapne Manage Jenkins mein rakha hai
                 withSonarQubeEnv('Sonar-Server') {
-                    sh 'echo "Running SonarScan..." '
-                    // Agar aapka scanner command hai toh wo yahan aayega
+                    sh '''
+                    /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner \
+                    -Dsonar.projectKey=my-website \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=http://16.171.177.251:9000/ \
+                    -Dsonar.javascript.node.executable=/usr/bin/node
+                    '''
                 }
             }
         }
-        stage('SonarQube Quality Gate') {
+        stage('Quality Gate') {
             steps {
                 script {
-                    timeout(time: 5, unit: 'MINUTES') {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
